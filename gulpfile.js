@@ -163,16 +163,16 @@ gulp.task('default',function(callback) {
 
 gulp.task('zip', ['build'], function() {
   return gulp.src('./dist/*.sketchplugin/**/*')
-    .pipe(zip('OpenColor-SketchPlugin.zip'))
+    .pipe(zip('preciousforever-SketchAspectRatio.zip'))
     .pipe(gulp.dest('dist'))
 });
 
 gulp.task('release', ['zip'], function() {
-  return gulp.src('./dist/OpenColor-SketchPlugin.zip')
+  return gulp.src('./dist/preciousforever-SketchAspectRatio.zip')
     .pipe(release({
       //token: 'token',                     // or you can set an env var called GITHUB_TOKEN instead
-      owner: 'opencolor-tools',                    // if missing, it will be extracted from manifest (the repository.url field)
-      repo: 'sketch-opencolor',            // if missing, it will be extracted from manifest (the repository.url field)
+      owner: 'preciousforever',                    // if missing, it will be extracted from manifest (the repository.url field)
+      repo: 'sketch-aspect-ratio',            // if missing, it will be extracted from manifest (the repository.url field)
       //tag: 'v1.0.0',                      // if missing, the version will be extracted from manifest and prepended by a 'v'
       //name: 'publish-release v1.0.0',     // if missing, it will be the same as the tag
       //notes: 'very good!',                // if missing it will be left undefined

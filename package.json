@@ -1,10 +1,10 @@
 {
-  "name": "sketch-plugin-ascpect-ratio",
+  "name": "sketch-ascpect-ratio",
   "version": "0.0.1",
   "description": "",
   "author": "CL/precious design studio",
   "authorEmail": "christoph.labacher@precious-forever.com",
-  "repository": "",
+  "repository": "https://github.com/preciousforever/sketch-aspect-ratio",
   "main": "src/plugin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
