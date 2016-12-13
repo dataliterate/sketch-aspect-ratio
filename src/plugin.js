@@ -11,6 +11,7 @@ export const HKSketchFusionExtension = {
   menu: {
     'isRoot': false,
     'items': [
+      'setAspectRatioList',
       {
         title: 'Set Aspect Ratio to',
         items: [
@@ -36,6 +37,11 @@ export const HKSketchFusionExtension = {
       name: 'Set Aspect Ratio manually',
       shortcut: '',
       run: commands.setAspectRatioManual
+    },
+    setAspectRatioList: {
+      name: 'Set Aspect Ratio',
+      shortcut: '',
+      run: commands.setAspectRatioList
     }
   }
 }

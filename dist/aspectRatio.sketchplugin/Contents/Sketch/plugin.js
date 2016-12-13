@@ -4,7 +4,7 @@ var __globals = this;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setAspectRatioManual = exports.setAspectRatioTo16To9 = exports.setAspectRatioTo1To1 = undefined;
+exports.setAspectRatioList = exports.setAspectRatioManual = exports.setAspectRatioTo16To9 = exports.setAspectRatioTo1To1 = undefined;
 
 var _setAspectRatioTo1To = require('./setAspectRatioTo1To1');
 
@@ -18,13 +18,97 @@ var _setAspectRatioManual = require('./setAspectRatioManual');
 
 var _setAspectRatioManual2 = _interopRequireDefault(_setAspectRatioManual);
 
+var _setAspectRatioList = require('./setAspectRatioList');
+
+var _setAspectRatioList2 = _interopRequireDefault(_setAspectRatioList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.setAspectRatioTo1To1 = _setAspectRatioTo1To2.default;
 exports.setAspectRatioTo16To9 = _setAspectRatioTo16To2.default;
 exports.setAspectRatioManual = _setAspectRatioManual2.default;
+exports.setAspectRatioList = _setAspectRatioList2.default;
 
-},{"./setAspectRatioManual":2,"./setAspectRatioTo16To9":3,"./setAspectRatioTo1To1":4}],2:[function(require,module,exports){
+},{"./setAspectRatioList":2,"./setAspectRatioManual":3,"./setAspectRatioTo16To9":4,"./setAspectRatioTo1To1":5}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = setAspectRatioList;
+
+var _setAspectRatioForSelection = require('../utils/setAspectRatioForSelection');
+
+var _sketchUi = require('../utils/sketch-ui');
+
+var _ratios = require('../resources/ratios.js');
+
+var ratios = _interopRequireWildcard(_ratios);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function setAspectRatioList(context) {
+  var selection = context.selection;
+
+  if (!selection.firstObject()) {
+    context.document.showMessage('Please select one or more layers');
+    return;
+  }
+
+  var alert = (0, _sketchUi.createAlert)('Set Aspect Ratio', 'Change the aspect ratio of the selected layers');
+  var listView = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 120));
+
+  var ratioValues = [];
+
+  ratios.ratios.forEach(function (ratio) {
+    ratioValues.push(ratio.x + ':' + ratio.y);
+  });
+
+  var uiSelectRatio = (0, _sketchUi.createSelect)(ratioValues, 0, NSMakeRect(0, 98, 250, 22), true);
+  listView.addSubview(uiSelectRatio);
+
+  var keepValues = ['Width', 'Height'];
+  var uiSelectKeep = (0, _sketchUi.createSelect)(keepValues, 0, NSMakeRect(150, 40, 100, 22), true);
+  listView.addSubview((0, _sketchUi.createLabel)('Keep', NSMakeRect(0, 40, 80, 22), 12, true));
+  listView.addSubview(uiSelectKeep);
+
+  var renameValues = ['Yes', 'No'];
+  var uiSelectRename = (0, _sketchUi.createSelect)(renameValues, 0, NSMakeRect(150, 10, 100, 22), true);
+  listView.addSubview((0, _sketchUi.createLabel)('Append Ratio to Name', NSMakeRect(0, 10, 140, 22), 12, true));
+  listView.addSubview(uiSelectRename);
+
+  alert.addAccessoryView(listView);
+  alert.addButtonWithTitle('Change Aspect Ratio');
+  alert.addButtonWithTitle('Cancel');
+
+  var responseCode = alert.runModal();
+  if (responseCode != '1000') {
+    // eslint-disable-line eqeqeq
+    return;
+  }
+
+  var ratioValueIndex = uiSelectRatio.indexOfSelectedItem();
+
+  var keepValueIndex = uiSelectKeep.indexOfSelectedItem();
+  var renameValueIndex = uiSelectRename.indexOfSelectedItem();
+
+  var ratio1 = ratios.ratios[ratioValueIndex].x;
+  var ratio2 = ratios.ratios[ratioValueIndex].y;
+
+  var keep = 'width';
+  if (keepValueIndex === 1) {
+    keep = 'height';
+  }
+
+  var rename = 'true';
+  if (renameValueIndex === 1) {
+    rename = 'false';
+  }
+
+  (0, _setAspectRatioForSelection.setAspectRatioForSelection)(selection, [ratio1, ratio2], keep, rename);
+}
+
+},{"../resources/ratios.js":7,"../utils/setAspectRatioForSelection":8,"../utils/sketch-ui":9}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -96,7 +180,7 @@ function setAspectRatioManual(context) {
   (0, _setAspectRatioForSelection.setAspectRatioForSelection)(selection, [ratio1, ratio2], keep, rename);
 }
 
-},{"../utils/setAspectRatioForSelection":6,"../utils/sketch-ui":7}],3:[function(require,module,exports){
+},{"../utils/setAspectRatioForSelection":8,"../utils/sketch-ui":9}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -118,7 +202,7 @@ function setAspectRatioTo16To9(context) {
   (0, _setAspectRatioForSelection.setAspectRatioForSelection)(selection, [16, 9], 'width', true);
 }
 
-},{"../utils/setAspectRatioForSelection":6}],4:[function(require,module,exports){
+},{"../utils/setAspectRatioForSelection":8}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -140,7 +224,7 @@ function setAspectRatioTo1_1(context) {
   (0, _setAspectRatioForSelection.setAspectRatioForSelection)(selection, [1, 1], 'width', true);
 }
 
-},{"../utils/setAspectRatioForSelection":6}],5:[function(require,module,exports){
+},{"../utils/setAspectRatioForSelection":8}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -164,7 +248,7 @@ var HKSketchFusionExtension = exports.HKSketchFusionExtension = {
   identifier: 'com.precious-forever.sketch-aspectRatio',
   menu: {
     'isRoot': false,
-    'items': [{
+    'items': ['setAspectRatioList', {
       title: 'Set Aspect Ratio to',
       items: ['setAspectRatioTo1To1', 'setAspectRatioTo16To9']
     }, 'setAspectRatioManual']
@@ -184,6 +268,11 @@ var HKSketchFusionExtension = exports.HKSketchFusionExtension = {
       name: 'Set Aspect Ratio manually',
       shortcut: '',
       run: commands.setAspectRatioManual
+    },
+    setAspectRatioList: {
+      name: 'Set Aspect Ratio',
+      shortcut: '',
+      run: commands.setAspectRatioList
     }
   }
 };
@@ -200,6 +289,10 @@ __globals.___setAspectRatioManual_run_handler_ = function (context, params) {
   HKSketchFusionExtension.commands['setAspectRatioManual'].run(context, params);
 };
 
+__globals.___setAspectRatioList_run_handler_ = function (context, params) {
+  HKSketchFusionExtension.commands['setAspectRatioList'].run(context, params);
+};
+
 /*__$begin_of_manifest_
 {
     "name": "Aspect Ratio",
@@ -212,6 +305,7 @@ __globals.___setAspectRatioManual_run_handler_ = function (context, params) {
     "menu": {
         "isRoot": false,
         "items": [
+            "setAspectRatioList",
             {
                 "title": "Set Aspect Ratio to",
                 "items": [
@@ -243,13 +337,27 @@ __globals.___setAspectRatioManual_run_handler_ = function (context, params) {
             "script": "plugin.js",
             "name": "Set Aspect Ratio manually",
             "shortcut": ""
+        },
+        {
+            "identifier": "setAspectRatioList",
+            "handler": "___setAspectRatioList_run_handler_",
+            "script": "plugin.js",
+            "name": "Set Aspect Ratio",
+            "shortcut": ""
         }
     ],
     "disableCocoaScriptPreprocessor": true
 }__$end_of_manifest_
 */
 
-},{"./commands":1}],6:[function(require,module,exports){
+},{"./commands":1}],7:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  ratios: [{ x: 1, y: 1 }, { x: 1, y: 3 }, { x: 10, y: 16 }, { x: 16, y: 10 }, { x: 16, y: 9 }, { x: 2, y: 3 }, { x: 21, y: 9 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 4 }, { x: 4, y: 3 }, { x: 4, y: 5 }, { x: 5, y: 3 }, { x: 5, y: 4 }, { x: 9, y: 16 }, { x: 9, y: 2 }]
+};
+
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -300,7 +408,7 @@ function setAspectRatioForSelection(selection, ratio, keep, appendRatioToName) {
   });
 }
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -353,4 +461,4 @@ function createLabel(text, frame, fontSize) {
   return label;
 }
 
-},{}]},{},[5]);
+},{}]},{},[6]);

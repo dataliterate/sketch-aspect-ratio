@@ -9,6 +9,7 @@
   "menu": {
     "isRoot": false,
     "items": [
+      "setAspectRatioList",
       {
         "title": "Set Aspect Ratio to",
         "items": [
@@ -39,6 +40,13 @@
       "handler": "___setAspectRatioManual_run_handler_",
       "script": "plugin.js",
       "name": "Set Aspect Ratio manually",
+      "shortcut": ""
+    },
+    {
+      "identifier": "setAspectRatioList",
+      "handler": "___setAspectRatioList_run_handler_",
+      "script": "plugin.js",
+      "name": "Set Aspect Ratio",
       "shortcut": ""
     }
   ],
