@@ -6,7 +6,7 @@ export const HKSketchFusionExtension = {
   description: '',
   author: 'CL/precious design studio',
   authorEmail: 'christoph.labacher@precious-forever.com',
-  version: '0.0.1',
+  version: '0.0.2',
   identifier: 'com.precious-forever.sketch-aspectRatio',
   menu: {
     'isRoot': false,
