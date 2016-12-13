@@ -54,9 +54,9 @@ export default function setAspectRatioList (context) {
     keep = 'height'
   }
 
-  var rename = 'true'
+  var rename = true
   if (renameValueIndex === 1) {
-    rename = 'false'
+    rename = false
   }
 
   setAspectRatioForSelection(selection, [ratio1, ratio2], keep, rename)

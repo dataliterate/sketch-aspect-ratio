@@ -100,9 +100,9 @@ function setAspectRatioList(context) {
     keep = 'height';
   }
 
-  var rename = 'true';
+  var rename = true;
   if (renameValueIndex === 1) {
-    rename = 'false';
+    rename = false;
   }
 
   (0, _setAspectRatioForSelection.setAspectRatioForSelection)(selection, [ratio1, ratio2], keep, rename);
@@ -244,7 +244,7 @@ var HKSketchFusionExtension = exports.HKSketchFusionExtension = {
   description: '',
   author: 'CL/precious design studio',
   authorEmail: 'christoph.labacher@precious-forever.com',
-  version: '0.0.1',
+  version: '0.0.3',
   identifier: 'com.precious-forever.sketch-aspectRatio',
   menu: {
     'isRoot': false,
@@ -300,7 +300,7 @@ __globals.___setAspectRatioList_run_handler_ = function (context, params) {
     "description": "",
     "author": "CL/precious design studio",
     "authorEmail": "christoph.labacher@precious-forever.com",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "identifier": "com.precious-forever.sketch-aspectRatio",
     "menu": {
         "isRoot": false,
