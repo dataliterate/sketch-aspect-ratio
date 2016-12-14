@@ -6,33 +6,16 @@ export const HKSketchFusionExtension = {
   description: '',
   author: 'CL/precious design studio',
   authorEmail: 'christoph.labacher@precious-forever.com',
-  version: '0.0.3',
+  version: '0.0.5',
   identifier: 'com.precious-forever.sketch-aspectRatio',
   menu: {
     'isRoot': false,
     'items': [
       'setAspectRatioList',
-      {
-        title: 'Set Aspect Ratio to',
-        items: [
-          'setAspectRatioTo1To1',
-          'setAspectRatioTo16To9'
-        ]
-      },
       'setAspectRatioManual'
     ]
   },
   commands: {
-    setAspectRatioTo1To1: {
-      name: '1:1',
-      shortcut: '',
-      run: commands.setAspectRatioTo1To1
-    },
-    setAspectRatioTo16To9: {
-      name: '16:9',
-      shortcut: '',
-      run: commands.setAspectRatioTo16To9
-    },
     setAspectRatioManual: {
       name: 'Set Aspect Ratio manually',
       shortcut: '',
