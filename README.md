@@ -4,7 +4,7 @@
 
 This plugin for [Sketch](https://www.sketchapp.com) helps you change the size of a layer to fit to a desired aspect ratio. Aspect ratios can be selected from a list of presets or entered manually.
 
-![Sketch Aspect Ratio Dialog](images/sketch-aspect-ratio-dialog.png)
+![Sketch Aspect Ratio Dialog](images/set-aspect-ratio-dialog.png)
 
 If you find any bugs or have suggestions for the further development please open a new [issue](https://github.com/preciousforever/sketch-aspect-ratio/issues)!
 
