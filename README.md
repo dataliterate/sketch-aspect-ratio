@@ -1,6 +1,10 @@
 # Sketch Aspect Ratio
 
+![Sketch Aspect Ratio](images/sketch-aspect-ratio.png)
+
 This plugin for [Sketch](https://www.sketchapp.com) helps you change the size of a layer to fit to a desired aspect ratio. Aspect ratios can be selected from a list of presets or entered manually.
+
+![Sketch Aspect Ratio Dialog](images/sketch-aspect-ratio-dialog.png)
 
 If you find any bugs or have suggestions for the further development please open a new [issue](https://github.com/preciousforever/sketch-aspect-ratio/issues)!
 
@@ -10,7 +14,7 @@ Download the latest version from the [releases page](https://github.com/precious
 
 ## How to change the preset aspect ratios
 
-The list of presets is located in [/resources/ratios.js](/resources/ratios.js). If you want to customize you can change it to your liking and then build a new version of the plugin by running `gulp build`. A new version of the plugin is then created in `/dist`. You can install this version to have your own list of presets available in Sketch.
+The list of presets is located in [/src/resources/ratios.js](/resources/ratios.js). If you want to customize you can change it to your liking and then build a new version of the plugin by running `gulp build`. A new version of the plugin is then created in `/dist`. You can install this version to have your own list of presets available in Sketch.
 
 ## Development
 
