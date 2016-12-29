@@ -15,15 +15,20 @@ export function createComboBox (items, selectedIndex, frame, pullsDown) {
   return select
 }
 
-export function createAlert (title, message, iconFilePath) {
+export function createAlert (context, title, message, iconFilePath) {
   var alert = COSAlertWindow.new()
   alert.setMessageText(title)
   alert.setInformativeText(message)
 
   if (iconFilePath) {
-    var icon = NSImage.alloc().initByReferencingFile(iconFilePath)
+    // get icon path
+    let iconUrl = context.plugin.urlForResourceNamed(iconFilePath)
+
+    // set icon
+    let icon = NSImage.alloc().initByReferencingFile(iconUrl.path())
     alert.setIcon(icon)
   }
+
   return alert
 }
 

@@ -10,7 +10,7 @@ export default function setAspectRatioList (context) {
     return
   }
 
-  var alert = createAlert('Set Aspect Ratio', 'Change the aspect ratio of the selected layers', 'icon.png')
+  var alert = createAlert(context, 'Set Aspect Ratio', 'Change the aspect ratio of the selected layers', 'icon.png')
   var listView = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 120))
 
   var ratioValues = []
