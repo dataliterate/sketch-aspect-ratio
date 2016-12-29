@@ -65,9 +65,9 @@ function parsePrimitives(value) {
 
     if (value == '') {
       return value
-    } else if (value == 'true' || value == '1') {
+    } else if (value == 'true') {
       value = true
-    } else if (value == 'false' || value == '0') {
+    } else if (value == 'false') {
       value = false
     } else if (value == 'null') {
       value = null

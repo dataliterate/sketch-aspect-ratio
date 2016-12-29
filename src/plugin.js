@@ -12,10 +12,16 @@ export const HKSketchFusionExtension = {
     'isRoot': false,
     'items': [
       'setAspectRatioList',
-      'setAspectRatioManual'
+      'setAspectRatioManual',
+      'setAspectRatioRepeat'
     ]
   },
   commands: {
+    setAspectRatioRepeat: {
+      name: 'Repeat with last options',
+      shortcut: '',
+      run: commands.setAspectRatioRepeat
+    },
     setAspectRatioManual: {
       name: 'Set Aspect Ratio manually',
       shortcut: '',

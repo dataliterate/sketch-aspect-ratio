@@ -36,7 +36,7 @@ export function setAspectRatioForSelection (selection, ratio, keep, appendRatioT
       }
     }
 
-    name = nameSplit.join(' ')
+    name = nameSplit.join(' ').trim()
 
     layer.setName(name)
   })

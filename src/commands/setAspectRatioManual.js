@@ -6,6 +6,11 @@ import Options, * as OPTIONS from '../utils/options'
 export default function setAspectRatioManual (context) {
   let selection = context.selection
 
+  if (!selection.firstObject()) {
+    context.document.showMessage('Please select one or more layers')
+    return
+  }
+
   // Load Options
   let options = Options()
 
@@ -13,11 +18,6 @@ export default function setAspectRatioManual (context) {
   let ratio2Selection = options[OPTIONS.RATIO_MANUAL_2] - 1 || 0
   let keepSelection = options[OPTIONS.KEEP_SELECTION] || 0
   let renameSelection = options[OPTIONS.RENAME_SELECTION] || 0
-
-  if (!selection.firstObject()) {
-    context.document.showMessage('Please select one or more layers')
-    return
-  }
 
   var alert = createAlert(context, 'Set Aspect Ratio', 'Change the aspect ratio of the selected layers', 'icon.png')
   var listView = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 120))
