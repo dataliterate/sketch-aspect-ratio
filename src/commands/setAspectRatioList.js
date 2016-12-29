@@ -2,8 +2,17 @@ import { setAspectRatioForSelection } from '../utils/setAspectRatioForSelection'
 import { createAlert, createLabel, createSelect } from '../utils/sketch-ui'
 import * as ratios from '../resources/ratios.js'
 
+import Options, * as OPTIONS from '../utils/options'
+
 export default function setAspectRatioList (context) {
   let selection = context.selection
+
+  // Load Options
+  let options = Options()
+
+  let ratioSelection = options[OPTIONS.RATIO_SELECTION] || 0
+  let keepSelection = options[OPTIONS.KEEP_SELECTION] || 0
+  let renameSelection = options[OPTIONS.RENAME_SELECTION] || 0
 
   if (!selection.firstObject()) {
     context.document.showMessage('Please select one or more layers')
@@ -19,16 +28,16 @@ export default function setAspectRatioList (context) {
     ratioValues.push(ratio.x + ':' + ratio.y)
   })
 
-  var uiSelectRatio = createSelect(ratioValues, 0, NSMakeRect(0, 98, 250, 22), true)
+  var uiSelectRatio = createSelect(ratioValues, ratioSelection, NSMakeRect(0, 98, 250, 22), true)
   listView.addSubview(uiSelectRatio)
 
   var keepValues = ['Width', 'Height']
-  var uiSelectKeep = createSelect(keepValues, 0, NSMakeRect(150, 40, 100, 22), true)
+  var uiSelectKeep = createSelect(keepValues, keepSelection, NSMakeRect(150, 40, 100, 22), true)
   listView.addSubview(createLabel('Keep', NSMakeRect(0, 40, 80, 22), 12, true))
   listView.addSubview(uiSelectKeep)
 
   var renameValues = ['Yes', 'No']
-  var uiSelectRename = createSelect(renameValues, 0, NSMakeRect(150, 10, 100, 22), true)
+  var uiSelectRename = createSelect(renameValues, renameSelection, NSMakeRect(150, 10, 100, 22), true)
   listView.addSubview(createLabel('Append Ratio to Name', NSMakeRect(0, 10, 140, 22), 12, true))
   listView.addSubview(uiSelectRename)
 
@@ -58,6 +67,17 @@ export default function setAspectRatioList (context) {
   if (renameValueIndex === 1) {
     rename = false
   }
+
+  options[OPTIONS.RATIO_SELECTION] = uiSelectRatio.indexOfSelectedItem()
+  options[OPTIONS.RATIO_1] = ratio1
+  options[OPTIONS.RATIO_2] = ratio2
+  options[OPTIONS.KEEP_SELECTION] = uiSelectKeep.indexOfSelectedItem()
+  options[OPTIONS.KEEP] = keep
+  options[OPTIONS.RENAME_SELECTION] = uiSelectRename.indexOfSelectedItem()
+  options[OPTIONS.RENAME] = rename
+
+  // Save Options
+  Options(options)
 
   setAspectRatioForSelection(selection, [ratio1, ratio2], keep, rename)
 }
