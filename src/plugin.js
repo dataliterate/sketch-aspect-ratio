@@ -2,12 +2,12 @@ import * as commands from './commands'
 
 export const HKSketchFusionExtension = {
   name: 'Aspect Ratio',
-  bundleName: 'aspectRatio',
-  description: '',
+  bundleName: 'Sketch Aspect Ratio',
+  description: 'Set preset or custom aspect ratios for a selected layer.',
   author: 'CL/precious design studio',
   authorEmail: 'christoph.labacher@precious-forever.com',
-  version: '0.0.5',
-  identifier: 'com.precious-forever.sketch-aspectRatio',
+  version: '1.0.0',
+  identifier: 'com.precious-forever.sketch-aspect-ratio',
   menu: {
     'isRoot': false,
     'items': [
