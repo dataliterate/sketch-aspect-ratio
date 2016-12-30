@@ -15,6 +15,8 @@ var zip = require('gulp-zip');
 
 var minimist = require('minimist');
 
+var sketch = require('gulp-sketch');
+
 var knownOptions = {
   string: 'target',
   default: { target: 'production' }
@@ -36,6 +38,15 @@ var ManifestProcessorOptions = {
 
 var currentManifest = {};
 
+//export icon
+gulp.task('icon', function(){
+  return gulp.src('./images/icon.sketch')
+    .pipe(sketch({
+      export: 'artboards',
+      formats: 'png'
+    }))
+    .pipe(gulp.dest('./src/resources/'));
+});
 
 function extractManifestObject() {
     var data = fs.readFileSync(path.join(__dirname,'build',ManifestProcessorOptions.scriptFileName),'utf8');
@@ -158,17 +169,17 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default',function(callback) {
-    runSequence('build', callback);
+    runSequence('icon','build', callback);
 });
 
 gulp.task('zip', ['build'], function() {
   return gulp.src('./dist/*.sketchplugin/**/*')
-    .pipe(zip('preciousforever-SketchAspectRatio.zip'))
+    .pipe(zip('SketchAspectRatio.zip'))
     .pipe(gulp.dest('dist'))
 });
 
 gulp.task('release', ['zip'], function() {
-  return gulp.src('./dist/preciousforever-SketchAspectRatio.zip')
+  return gulp.src('./dist/SketchAspectRatio.zip')
     .pipe(release({
       //token: 'token',                     // or you can set an env var called GITHUB_TOKEN instead
       owner: 'preciousforever',                    // if missing, it will be extracted from manifest (the repository.url field)
@@ -177,7 +188,7 @@ gulp.task('release', ['zip'], function() {
       //name: 'publish-release v1.0.0',     // if missing, it will be the same as the tag
       //notes: 'very good!',                // if missing it will be left undefined
       draft: false,                       // if missing it's false
-      prerelease: true,                  // if missing it's false
+      prerelease: false,                  // if missing it's false
       manifest: require('./build/manifest.json') // package.json from which default values will be extracted if they're missing
     }));
 });
