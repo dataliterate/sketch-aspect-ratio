@@ -1,6 +1,5 @@
-# Sketch Aspect Ratio
-
-![Sketch Aspect Ratio](images/sketch-aspect-ratio.png)
+<img src="images/sketch-aspect-ratio.png" width="418" alt ="Sketch Aspect Ratio">
+<hr />
 
 This plugin for [Sketch](https://www.sketchapp.com) helps you change the size of a layer to fit to a desired aspect ratio. Aspect ratios can be selected from a list of presets or entered manually.
 
