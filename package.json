@@ -1,7 +1,7 @@
 {
   "name": "sketch-ascpect-ratio",
-  "version": "0.0.5",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Set preset or custom aspect ratios for a selected layer.",
   "author": "CL/precious design studio",
   "authorEmail": "christoph.labacher@precious-forever.com",
   "repository": "https://github.com/preciousforever/sketch-aspect-ratio",
@@ -30,7 +30,8 @@
     "minimist": "^1.2.0",
     "run-sequence": "^1.1.5",
     "standard": "^7.1.2",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "gulp-sketch": "^1.0.3"
   },
   "standard": {
     "ignore": [
