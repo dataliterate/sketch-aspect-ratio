@@ -48,6 +48,20 @@ gulp.task('icon', function(){
     .pipe(gulp.dest('./src/resources/'));
 });
 
+//export logo
+gulp.task('logo', function(){
+  return gulp.src('./images/sketch-aspect-ratio.sketch')
+    .pipe(sketch({
+      export: 'artboards',
+      formats: 'png'
+    }))
+    .pipe(gulp.dest('./images/'));
+});
+
+gulp.task('assets',function(callback) {
+    runSequence('icon','logo',callback);
+});
+
 function extractManifestObject() {
     var data = fs.readFileSync(path.join(__dirname,'build',ManifestProcessorOptions.scriptFileName),'utf8');
     var startTag = ManifestProcessorOptions.startingManifestTag;
@@ -169,7 +183,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default',function(callback) {
-    runSequence('icon','build', callback);
+    runSequence('assets','build', callback);
 });
 
 gulp.task('zip', ['build'], function() {
