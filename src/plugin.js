@@ -6,7 +6,7 @@ export const HKSketchFusionExtension = {
   description: 'Set preset or custom aspect ratios for a selected layer.',
   author: 'CL/precious design studio',
   authorEmail: 'christoph.labacher@precious-forever.com',
-  version: '1.0.0',
+  version: '1.0.1',
   identifier: 'com.precious-forever.sketch-aspect-ratio',
   menu: {
     'isRoot': false,
