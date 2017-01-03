@@ -140,14 +140,6 @@ gulp.task('assemble-plugin-resources',function(callback) {
         .pipe(gulp.dest(path.join(__dirname,'dist',normalizePluginFileName(currentManifest.bundleName || currentManifest.name)+'.sketchplugin','Contents/Resources')));
 });
 
-gulp.task('add-custom-ratios',function(callback) {
-    function normalizePluginFileName(name) {
-        return name;
-    }
-    return gulp.src('src/custom-ratios/**/*.*')
-        .pipe(gulp.dest(path.join(__dirname,'dist',normalizePluginFileName(currentManifest.bundleName || currentManifest.name)+'.sketchplugin','Contents/Resources')));
-});
-
 gulp.task('install-plugin',function(){
     return gulp.src("dist/**/*.*")
         .pipe(gulp.dest(SKETCH_PLUGINS_FOLDER));
@@ -156,11 +148,6 @@ gulp.task('install-plugin',function(){
 gulp.task('build',function(callback) {
     runSequence('clean','prepare-folders','bundle','prepare-manifest','assemble-plugin-bundle','assemble-plugin-resources','install-plugin',callback);
 });
-
-gulp.task('custom-ratios',function(callback) {
-    runSequence('clean','prepare-folders','bundle','prepare-manifest','assemble-plugin-bundle','assemble-plugin-resources','add-custom-ratios','install-plugin',callback);
-});
-
 
 gulp.task('bundle',function() {
     var filePath = './src/plugin.js';
