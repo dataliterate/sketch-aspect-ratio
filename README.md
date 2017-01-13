@@ -13,7 +13,7 @@ Download the latest version from the [releases page](https://github.com/precious
 
 ## How to change the preset aspect ratios
 
-The list of presets is located in [/src/resources/ratios.js](/resources/ratios.js). If you want to customize you can change it to your liking and then build a new version of the plugin by running `gulp build`. A new version of the plugin is then created in `/dist`. You can install this version to have your own list of presets available in Sketch.
+The list of presets is located in [/src/resources/ratios.js](/src/resources/ratios.js). If you want to customize you can change it to your liking and then build a new version of the plugin by running `gulp build`. A new version of the plugin is then created in `/dist`. You can install this version to have your own list of presets available in Sketch.
 
 ## Development
 
